@@ -1,0 +1,17 @@
+{
+    "name": "ebcms/store",
+    "description": "应用商店",
+    "type": "ebcms-app",
+    "license": "Apache-2.0",
+    "require": {
+        "ebcms/admin": "1.*"
+    },
+    "extra": {
+        "api": "https://www.ebcms.com/plugin/store/api"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Ebcms\\Store\\": "src/library/"
+        }
+    }
+}
