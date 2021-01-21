@@ -32,7 +32,7 @@ class Backup extends Common
         return $this->success('备份成功！', '', $plugin);
     }
 
-    private function backup(array $items = [], string $path, string $target)
+    private function backup(array $items, string $path, string $target)
     {
         foreach ($items as $item) {
             if (is_file($path . '/' . $item)) {
