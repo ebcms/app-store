@@ -47,7 +47,6 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade p-3 bg-light my-3 show active" id="content" role="tabpanel" aria-labelledby="content-tab">
-                {:htmlspecialchars_decode($plugin['content'])}
             </div>
             <div class="tab-pane fade p-3 bg-light my-3" id="changelog" role="tabpanel" aria-labelledby="changelog-tab">
                 <?php $res = $server->query('/version', ['plugin_name' => $plugin['name']]); ?>
@@ -55,9 +54,9 @@
                 {foreach $res['data'] as $vo}
                 <div class="">
                     <div class="h6">{$vo.version}</div>
-                    <div><small>{$vo.update_time}</small></div>
+                    <div><small>{$vo['release_time']??''}</small></div>
                     <div>
-                        <pre>{$vo.content}</pre>
+                        <pre>{$vo['log']??''}</pre>
                     </div>
                 </div>
                 {/foreach}
@@ -70,4 +69,31 @@
         {include right@ebcms/store}
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@12.0.3/dist/markdown-it.min.js" integrity="sha256-w9HUyWlYpo2NY0GnFNkPqoxBdCNZNn1B3lgPQif2d2I=" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/vs.css">
+<script>
+    function base64Decode(input) {
+        rv = window.atob(input);
+        rv = escape(rv);
+        rv = decodeURIComponent(rv);
+        return rv;
+    }
+    var md = window.markdownit({
+        highlight: function(str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return '<pre class="hljs"><code>' +
+                        hljs.highlight(lang, str, true).value +
+                        '</code></pre>';
+                } catch (__) {}
+            }
+            return '<pre class="hljs"><code>' + window.markdownit().utils.escapeHtml(str) + '</code></pre>';
+        }
+    });
+    $("#content").html(md.render(base64Decode("{:base64_encode($plugin['content']??'__暂无介绍__')}")));
+    $("#content a").attr("target", "_blank");
+    $("#content table").addClass("table table-bordered my-3");
+</script>
 {include common/footer@ebcms/admin}
