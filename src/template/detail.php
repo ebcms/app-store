@@ -17,7 +17,7 @@
             </li>
         </ul>
         <div class="media mb-4">
-            <img style="cursor:pointer;height:100px;width:100px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$plugin.icon}">
+            <img style="cursor:pointer;height:100px;width:100px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$plugin.logo}">
             <div class="media-body">
                 <?php $_installed = $server->getInstalled(); ?>
                 {if !isset($_installed[$plugin['name']])}

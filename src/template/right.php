@@ -7,7 +7,7 @@
         {foreach $res['data'] as $vo}
         <li class="list-inline-item text-center">
             <a href="{:$router->buildUrl('/ebcms/store/detail',['plugin_name'=>$vo['name']])}">
-                <img src="{$vo.icon}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
+                <img src="{$vo['logo']??''}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
                 <div class="mt-2 mb-3">{$vo.title}</div>
             </a>
         </li>
@@ -30,7 +30,7 @@
         {foreach $res['data'] as $vo}
         <li class="list-inline-item text-center">
             <a href="{:$router->buildUrl('/ebcms/store/detail',['plugin_name'=>$vo['name']])}">
-                <img src="{$vo.icon}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
+                <img src="{$vo['logo']??''}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
                 <div class="mt-2 mb-3">{$vo.title}</div>
             </a>
         </li>
@@ -51,7 +51,7 @@
         {foreach $res['data'] as $vo}
         <li class="list-inline-item text-center">
             <a href="{:$router->buildUrl('/ebcms/store/detail',['plugin_name'=>$vo['name']])}">
-                <img src="{$vo.icon}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
+                <img src="{$vo['logo']??''}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
                 <div class="mt-2 mb-3">{$vo.title}</div>
             </a>
         </li>

@@ -1,6 +1,6 @@
 {include common/header@ebcms/admin}
 <div class="media my-4">
-    <img style="cursor:pointer;height:100px;width:100px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$plugin.icon}">
+    <img style="cursor:pointer;height:100px;width:100px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$plugin['logo']??''}">
     <div class="media-body">
         <h5 class="mt-0 mb-1">{$plugin.title}</h5>
         <div class="text-muted">{$plugin['description']??'暂无介绍'}</div>

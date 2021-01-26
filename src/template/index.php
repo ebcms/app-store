@@ -24,7 +24,7 @@
         <ul class="list-unstyled">
             {foreach $items as $vo}
             <li class="media position-relative p-2 plugin-item">
-                <img style="cursor:pointer;height:80px;width:80px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$vo.icon}">
+                <img style="cursor:pointer;height:80px;width:80px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$vo.logo}">
                 <div class="media-body">
                     <h5 class="mt-0 mb-1">{$vo.title}</h5>
                     <div class="text-muted">{$vo['description']??'暂无介绍'}</div>
