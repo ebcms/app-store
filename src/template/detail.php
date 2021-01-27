@@ -17,7 +17,7 @@
             </li>
         </ul>
         <div class="media mb-4">
-            <img style="cursor:pointer;height:100px;width:100px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$plugin.logo}">
+            <img style="cursor:pointer;height:100px;width:100px;" class="img-thumbnail img-fluid mr-3 p-2" src="{$plugin['logo']??''}">
             <div class="media-body">
                 <?php $_installed = $server->getInstalled(); ?>
                 {if !isset($_installed[$plugin['name']])}
@@ -46,22 +46,8 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade p-3 bg-light my-3 show active" id="content" role="tabpanel" aria-labelledby="content-tab">
-            </div>
-            <div class="tab-pane fade p-3 bg-light my-3" id="changelog" role="tabpanel" aria-labelledby="changelog-tab">
-                <?php $res = $server->query('/version', ['plugin_name' => $plugin['name']]); ?>
-                {if $res['status']==200}
-                {foreach $res['data'] as $vo}
-                <div class="">
-                    <div class="h6">{$vo.version}</div>
-                    <div><small>{$vo['release_time']??''}</small></div>
-                    <div>
-                        <pre>{$vo['log']??''}</pre>
-                    </div>
-                </div>
-                {/foreach}
-                {/if}
-            </div>
+            <div class="tab-pane fade p-3 bg-light my-3 show active" id="content" role="tabpanel" aria-labelledby="content-tab"></div>
+            <div class="tab-pane fade p-3 bg-light my-3" id="changelog" role="tabpanel" aria-labelledby="changelog-tab"></div>
             <div class="tab-pane fade p-3 bg-light my-3" id="stats" role="tabpanel" aria-labelledby="stats-tab">统计</div>
         </div>
     </div>
@@ -95,5 +81,8 @@
     $("#content").html(md.render(base64Decode("{:base64_encode($plugin['content']??'__暂无介绍__')}")));
     $("#content a").attr("target", "_blank");
     $("#content table").addClass("table table-bordered my-3");
+    $("#changelog").html(md.render(base64Decode("{:base64_encode($plugin['changelog']??'__暂无日志__')}")));
+    $("#changelog a").attr("target", "_blank");
+    $("#changelog table").addClass("table table-bordered my-3");
 </script>
 {include common/footer@ebcms/admin}

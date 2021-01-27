@@ -8,7 +8,7 @@
         <li class="list-inline-item text-center">
             <a href="{:$router->buildUrl('/ebcms/store/detail',['plugin_name'=>$vo['name']])}">
                 <img src="{$vo['logo']??''}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
-                <div class="mt-2 mb-3">{$vo.title}</div>
+                <div class="mt-2 mb-3">{$vo['title']??$vo['name']}</div>
             </a>
         </li>
         {/foreach}
@@ -31,7 +31,7 @@
         <li class="list-inline-item text-center">
             <a href="{:$router->buildUrl('/ebcms/store/detail',['plugin_name'=>$vo['name']])}">
                 <img src="{$vo['logo']??''}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
-                <div class="mt-2 mb-3">{$vo.title}</div>
+                <div class="mt-2 mb-3">{$vo['title']??$vo['name']}</div>
             </a>
         </li>
         {/foreach}
@@ -52,7 +52,7 @@
         <li class="list-inline-item text-center">
             <a href="{:$router->buildUrl('/ebcms/store/detail',['plugin_name'=>$vo['name']])}">
                 <img src="{$vo['logo']??''}" alt="..." class="img-thumbnail p-2" style="width:80px;height:80px;">
-                <div class="mt-2 mb-3">{$vo.title}</div>
+                <div class="mt-2 mb-3">{$vo['title']??$vo['name']}</div>
             </a>
         </li>
         {/foreach}
