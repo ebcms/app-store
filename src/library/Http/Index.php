@@ -7,21 +7,21 @@ namespace App\Ebcms\Store\Http;
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\Store\Model\Server;
 use Ebcms\Pagination;
-use Ebcms\RequestFilter;
+use Ebcms\Request;
 use Ebcms\Template;
 
 class Index extends Common
 {
     public function get(
-        RequestFilter $input,
+        Request $request,
         Pagination $pagination,
         Template $template,
         Server $server
     ) {
         $data = [];
         $res = $server->query('/search', [
-            'page' => $input->get('page'),
-            'q' => $input->get('q'),
+            'page' => $request->get('page'),
+            'q' => $request->get('q'),
         ]);
         if ($res['status'] != 200) {
             return $this->failure($res['message']);

@@ -7,29 +7,29 @@ namespace App\Ebcms\Store\Http;
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\Store\Model\Server;
 use Ebcms\App;
-use Ebcms\RequestFilter;
+use Ebcms\Request;
 use Ebcms\Session;
 
 class Source extends Common
 {
     public function get(
         App $app,
-        RequestFilter $input,
+        Request $request,
         Server $server,
         Session $session
     ) {
         $version = '';
-        $json_file = $app->getAppPath() . '/plugin/' . $input->get('plugin_name') . '/plugin.json';
+        $json_file = $app->getAppPath() . '/plugin/' . $request->get('plugin_name') . '/plugin.json';
         if (
             file_exists($json_file) &&
-            file_exists($app->getAppPath() . '/config/plugin/' . $input->get('plugin_name') . '/install.lock')
+            file_exists($app->getAppPath() . '/config/plugin/' . $request->get('plugin_name') . '/install.lock')
         ) {
             $plugin_info = json_decode(file_get_contents($json_file), true);
             $version = $plugin_info['version'];
         }
 
         $res = $server->query('/source', [
-            'ticket' => $input->get('ticket'),
+            'ticket' => $request->get('ticket'),
             'version' => $version,
         ]);
 

@@ -8,7 +8,7 @@ use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\Store\Model\Server;
 use Ebcms\App;
 use Ebcms\Router;
-use Ebcms\RequestFilter;
+use Ebcms\Request;
 
 class Ticket extends Common
 {
@@ -16,14 +16,14 @@ class Ticket extends Common
         App $app,
         Router $router,
         Server $server,
-        RequestFilter $input
+        Request $request
     ) {
         $salt = md5(uniqid() . rand(100000000, 999999999));
         file_put_contents($app->getAppPath() . '/runtime/salt.tmp', $salt);
 
         $res = $server->query('/ticket', [
             'verify_url' => $router->buildUrl('/ebcms/store/verify'),
-            'plugin_name' => $input->get('plugin_name'),
+            'plugin_name' => $request->get('plugin_name'),
             'salt' => $salt,
         ]);
         if ($res['status'] == 200) {

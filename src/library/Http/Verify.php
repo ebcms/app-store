@@ -7,7 +7,7 @@ namespace App\Ebcms\Store\Http;
 use App\Ebcms\Admin\Traits\ResponseTrait;
 use App\Ebcms\Admin\Traits\RestfulTrait;
 use Ebcms\App;
-use Ebcms\RequestFilter;
+use Ebcms\Request;
 
 class Verify
 {
@@ -16,11 +16,11 @@ class Verify
 
     public function get(
         App $app,
-        RequestFilter $input
+        Request $request
     ) {
         try {
             $salt = file_get_contents($app->getAppPath() . '/runtime/salt.tmp');
-            return md5($salt . $input->get('salt'));
+            return md5($salt . $request->get('salt'));
         } catch (\Throwable $th) {
             return '';
         }
